@@ -1,0 +1,19 @@
+click
+dataclasses
+Flask
+Flask-SQLAlchemy
+Flask-Bootstrap
+greenlet
+importlib-metadata
+itsdangerous
+Jinja2
+MarkupSafe
+werkzeug==2.3.0 
+Pillow==9.5.0
+# pkg_resources
+SQLAlchemy
+typing_extensions
+Werkzeug
+zipp
+Flask-Admin
+wtforms==2.3.3
