@@ -1,4 +1,4 @@
-# Fullstack Bookshop CRUD app using sqllite with Flask and SQLAlchemy
+# Fullstack Book Online CRUD app using sqllite with Flask and SQLAlchemy
 
 ## Quick start
 ```bash
