@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#563d7c">
     <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
     <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/docs/4.6/examples/pricing/pricing.css" rel="stylesheet">
     
@@ -38,7 +38,7 @@
 {% endblock %}
 <div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-3 mb-2 bg-white border-bottom shadow-sm">
     <h5 class="my-0 mr-md-auto font-weight-normal"><a href="{{ url_for('index') }}" class="navbar-brand d-flex align-items-center">
-      <img src="{{ url_for('static', filename='read-book-icon.svg') }}" alt="" width="70" height="40">
+      <img src="{{ url_for('static', filename='logo/read-book-icon.svg') }}" alt="" width="70" height="40">
       <strong>Book Online</strong></a>
     </h5>
     <form class="form-inline my-2 my-lg-0 p-2" action="/search" >

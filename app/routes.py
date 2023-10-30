@@ -15,7 +15,7 @@ import os.path as op
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 
 # Create directory for file fields to use
-file_path = op.join(op.dirname(__file__), 'files')
+file_path = op.join(op.dirname(__file__), 'static')
 try:
     os.mkdir(file_path)
 except OSError:
