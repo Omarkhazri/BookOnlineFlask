@@ -4,7 +4,7 @@
 {% endblock %}
 {% block page_content %}
 <div class="p-3">
-  <h1 class="lead p-2"><i>Enjoy more then </i> <strong>{{books|length}}</strong> <i>Book's online for free</i> !</h1>
+  <h1 class="lead p-2"><i>Enjoy more then </i> <strong>{{book_totals}}</strong> <i>Book's online for free</i> !</h1>
   {% if category %}
   <h5>Books related to : <i>{{category.label | upper}}</i></h5>
   {% elif categories %}
@@ -15,7 +15,7 @@
     {% endfor %}
   </nav>
   {% elif q%}
-  <p class="lead"><strong>Search result for : </strong><i>" {{q}} "</i></p>
+  <p class="lead">{{books|length}}<strong> Search results for: </strong><i>" {{q}} "</i></p>
   {% endif %}
 </div>
 <div class="row">

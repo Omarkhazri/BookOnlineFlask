@@ -85,7 +85,8 @@ admin.add_view(ExcluedBookView(Language, db.session))
 def index():
     books = Book.query.all()
     categories = Category.query.all()
-    return render_template("index.html", books=books,form=form,categories=categories)
+    book_totals = len(books)
+    return render_template("index.html", books=books,form=form,categories=categories,book_totals=book_totals)
 
 @app.route("/category/<int:id>", methods=["GET"])
 def get_books_by_category(id):
@@ -98,11 +99,12 @@ def get_books_by_category(id):
 @app.route("/search")
 def search():
     q = request.args.get('q')
+    book_totals = Book.query.count()
     if q:
         books = Book.query.filter(Book.title.icontains(q) | Author.author_name.icontains(q) | Category.label.icontains(q)).all()
     else:
         abort(404) 
-    return render_template("index.html", books=books,form=form,q=q)
+    return render_template("index.html", books=books,form=form,q=q,book_totals=book_totals)
 
 @app.route("/profile")
 @login_required
