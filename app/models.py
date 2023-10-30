@@ -16,6 +16,7 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'), nullable=False)
     language_id = db.Column(db.Integer, db.ForeignKey('languages.id'), nullable=False)
+    category_id = db.Column(db.Integer, db.ForeignKey('categories.id'), nullable=False)
     title = db.Column(db.String(255))
     desc = db.Column(db.Text)
     num_pages = db.Column(db.Integer)
@@ -24,7 +25,7 @@ class Book(db.Model):
     img_path = db.Column(db.Unicode(128))
     author = db.relationship('Author', backref='books')
     language = db.relationship('Language', backref='books')
-
+    category = db.relationship('Category', backref='books')
     def __repr__(self):
         return f'{self.title}'
 
@@ -35,10 +36,17 @@ class Author(db.Model):
     author_name = db.Column(db.String(255))
     def __repr__(self):
         return f'{self.author_name}'
-# Define Author model
+# Define Language model
 class Language(db.Model):
     __tablename__ = 'languages'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     code_lang = db.Column(db.String(3))
     def __repr__(self):
         return f'{self.code_lang}'
+# Define Category model
+class Category(db.Model):
+    __tablename__ = 'categories'
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    label = db.Column(db.String(255))
+    def __repr__(self):
+        return f'{self.label}'

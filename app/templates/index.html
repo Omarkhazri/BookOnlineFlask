@@ -3,8 +3,18 @@
 <title>Home</title>
 {% endblock %}
 {% block page_content %}
-<div class="p-4">
-    <h1 class="lead"><i>Enjoy more then </i> <strong>{{books|length}}</strong> <i>Book's online for free</i> !</h1>
+<div class="p-3">
+  <h1 class="lead p-2"><i>Enjoy more then </i> <strong>{{books|length}}</strong> <i>Book's online for free</i> !</h1>
+  {% if not categories %}
+  <h5>Books related to : <i>{{category.label | upper}}</i></h5>
+  {% else %}
+  <h5>Categories :</h5>
+  <nav class="nav d-flex justify-content-between">
+    {% for category in categories %}
+    <a class="p-2 text-muted" href="{{url_for('get_books_by_category', id=category.id)}}">{{category.label | capitalize}}</a>
+    {% endfor %}
+  </nav>
+  {% endif %}
 </div>
 <div class="row">
     {% for book in books %}

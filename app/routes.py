@@ -1,6 +1,6 @@
 import os
 from . import create_app
-from .models import User,Book,Author,Language
+from .models import User,Book,Author,Language,Category
 from . import db
 from flask import redirect, request, abort, render_template, url_for,flash
 from flask_admin import Admin,form
@@ -53,7 +53,7 @@ def del_image(mapper, connection, target):
 
 
 class BookView(ModelView):
-    form_columns = ('title','desc','language', 'num_pages', 'publication_date', 'download_link', 'author','img_path')
+    form_columns = ('title','desc','category','language','author','num_pages', 'publication_date', 'download_link','img_path')
     def _list_thumbnail(view, context, model, name):
         if not model.img_path:
             return ''
@@ -77,14 +77,23 @@ class ExcluedBookView(ModelView):
 
 admin.add_view(ModelView(User, db.session))
 admin.add_view(BookView(Book, db.session))
+admin.add_view(ExcluedBookView(Category, db.session))
 admin.add_view(ExcluedBookView(Author, db.session))
 admin.add_view(ExcluedBookView(Language, db.session))
 
 @app.route("/")
 def index():
     books = Book.query.all()
-    return render_template("index.html", books=books,form=form)
+    categories = Category.query.all()
+    return render_template("index.html", books=books,form=form,categories=categories)
 
+@app.route("/category/<int:id>", methods=["GET"])
+def get_books_by_category(id):
+    category = Category.query.get(id)
+    books = category.books
+    if books is None:
+        abort(404)
+    return render_template("index.html", books=books,form=form,category=category)
 
 @app.route("/profile")
 @login_required
