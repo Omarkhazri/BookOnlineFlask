@@ -92,9 +92,10 @@ def index():
 def get_books_by_category(id):
     category = Category.query.get(id)
     books = category.books
+    book_totals = len(books)
     if books is None:
         abort(404)
-    return render_template("index.html", books=books,form=form,category=category)
+    return render_template("index.html", books=books,form=form,category=category,book_totals=book_totals)
 
 @app.route("/search")
 def search():
