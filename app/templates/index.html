@@ -5,15 +5,17 @@
 {% block page_content %}
 <div class="p-3">
   <h1 class="lead p-2"><i>Enjoy more then </i> <strong>{{books|length}}</strong> <i>Book's online for free</i> !</h1>
-  {% if not categories %}
+  {% if category %}
   <h5>Books related to : <i>{{category.label | upper}}</i></h5>
-  {% else %}
+  {% elif categories %}
   <h5>Categories :</h5>
   <nav class="nav d-flex justify-content-between">
     {% for category in categories %}
     <a class="p-2 text-muted" href="{{url_for('get_books_by_category', id=category.id)}}">{{category.label | capitalize}}</a>
     {% endfor %}
   </nav>
+  {% elif q%}
+  <p class="lead"><strong>Search result for : </strong><i>" {{search}} "</i></p>
   {% endif %}
 </div>
 <div class="row">
