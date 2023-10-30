@@ -13,7 +13,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SECRET_KEY = "dev"
     # set optional bootswatch theme
-    FLASK_ADMIN_SWATCH = 'Lux'
+    FLASK_ADMIN_SWATCH = 'lux'
     SQLALCHEMY_DATABASE_URI = "sqlite:///bookOnline.db"
 
 
