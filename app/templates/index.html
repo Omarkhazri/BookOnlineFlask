@@ -14,8 +14,8 @@
     <a class="p-2 text-muted" href="{{url_for('get_books_by_category', id=category.id)}}">{{category.label | capitalize}}</a>
     {% endfor %}
   </nav>
-  {% elif search%}
-  <p class="lead"><strong>Search result for : </strong><i>" {{search}} "</i></p>
+  {% elif q%}
+  <p class="lead"><strong>Search result for : </strong><i>" {{q}} "</i></p>
   {% endif %}
 </div>
 <div class="row">
