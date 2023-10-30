@@ -95,6 +95,15 @@ def get_books_by_category(id):
         abort(404)
     return render_template("index.html", books=books,form=form,category=category)
 
+@app.route("/search",methods=['POST'])
+def search():
+    search = request.form.get('search')
+    if search:
+        books = Book.query.filter(Book.title.icontains(search) | Author.author_name.icontains(search) | Category.label.icontains(search)).all()
+    else:
+        books = Book.query.all()  
+    return render_template("index.html", books=books,form=form,search=search)
+
 @app.route("/profile")
 @login_required
 def profile():
